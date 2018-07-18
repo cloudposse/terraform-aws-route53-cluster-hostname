@@ -4,27 +4,34 @@ variable "enabled" {
 }
 
 variable "namespace" {
-  default = "global"
+  description = "Namespace (e.g. `cp` or `cloudposse`)"
 }
 
 variable "stage" {
-  default = "default"
+  description = "Stage (e.g. `prod`, `dev`, `staging`)"
 }
 
 variable "name" {
-  default = "dns"
+  description = "The Name of the application or solution  (e.g. `bastion` or `portal`)"
+  default     = "dns"
 }
 
-variable "zone_id" {}
+variable "zone_id" {
+  default     = ""
+  description = "Route53 DNS Zone id"
+}
 
 variable "records" {
-  type = "list"
+  type        = "list"
+  description = "Records"
 }
 
 variable "type" {
-  default = "CNAME"
+  default     = "CNAME"
+  description = "Type"
 }
 
 variable "ttl" {
-  default = "300"
+  default     = "300"
+  description = "The TTL of the record to add to the DNS zone to complete certificate validation"
 }
