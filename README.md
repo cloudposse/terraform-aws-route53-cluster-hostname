@@ -68,8 +68,8 @@ Available targets:
 
 Check out these related projects.
 
-- [terraform-aws-route53-alias](https://github.com/cloudposse/terraform-aws-route53-alias) - TTerraform Module to Define Vanity Host/Domain (e.g. `brand.com`) as an ALIAS record
-- [terraform-aws-route53-cluster-zone](https://github.com/cloudposse/terraform-aws-route53-cluster-zone) - Terraform Cluster Domain (e.g. `prod.ourcompany.com`)
+- [terraform-aws-route53-alias](https://github.com/cloudposse/terraform-aws-route53-alias) - Terraform module to define vanity host/domain (e.g. `brand.com`) as an ALIAS record
+- [terraform-aws-route53-cluster-zone](https://github.com/cloudposse/terraform-aws-route53-cluster-zone) - Terraform module to provision cluster domain (e.g. `prod.ourcompany.com`)
 - [terraform-aws-kops-route53](https://github.com/cloudposse/terraform-aws-kops-route53) - Terraform module to lookup the IAM role associated with `kops` masters, and attach an IAM policy to the role with permissions to modify Route53 record sets
 
 
