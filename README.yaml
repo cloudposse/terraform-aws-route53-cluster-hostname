@@ -30,10 +30,10 @@ badges:
 
 related:
   - name: "terraform-aws-route53-alias"
-    description: "TTerraform Module to Define Vanity Host/Domain (e.g. `brand.com`) as an ALIAS record"
+    description: "Terraform module to define vanity host/domain (e.g. `brand.com`) as an ALIAS record"
     url: "https://github.com/cloudposse/terraform-aws-route53-alias"
   - name: "terraform-aws-route53-cluster-zone"
-    description: "Terraform Cluster Domain (e.g. `prod.ourcompany.com`)"
+    description: "Terraform module to provision cluster domain (e.g. `prod.ourcompany.com`)"
     url: "https://github.com/cloudposse/terraform-aws-route53-cluster-zone"
   - name: "terraform-aws-kops-route53"
     description: "Terraform module to lookup the IAM role associated with `kops` masters, and attach an IAM policy to the role with permissions to modify Route53 record sets"
