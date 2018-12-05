@@ -11,6 +11,7 @@ name: terraform-aws-route53-cluster-hostname
 tags:
   - aws
   - terraform
+  - terraform-modules
   - networking
   - route53
   - cluster
