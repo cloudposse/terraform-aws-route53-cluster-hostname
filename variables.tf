@@ -22,7 +22,7 @@ variable "zone_id" {
 }
 
 variable "records" {
-  type        = "list"
+  type        = list(string)
   description = "Records"
 }
 
