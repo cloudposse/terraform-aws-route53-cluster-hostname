@@ -3,7 +3,7 @@
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| enabled | Set to false to prevent the module from creating any resources | string | `true` | no |
+| enabled | Set to false to prevent the module from creating any resources | bool | true | no |
 | name | The Name of the application or solution  (e.g. `bastion` or `portal`) | string | `dns` | no |
 | namespace | Namespace (e.g. `cp` or `cloudposse`) | string | - | yes |
 | records | Records | list | - | yes |
