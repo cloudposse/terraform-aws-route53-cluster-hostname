@@ -22,7 +22,7 @@ variable "zone_id" {
 }
 
 variable "records" {
-  type        = "list"
+  type        = list(string)
   description = "Records"
 }
 
@@ -35,3 +35,4 @@ variable "ttl" {
   default     = "300"
   description = "The TTL of the record to add to the DNS zone to complete certificate validation"
 }
+
