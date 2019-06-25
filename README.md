@@ -5,7 +5,7 @@
 
 # terraform-aws-route53-cluster-hostname
 
- [![Build Status](https://travis-ci.org/cloudposse/terraform-aws-route53-cluster-hostname.svg?branch=master)](https://travis-ci.org/cloudposse/terraform-aws-route53-cluster-hostname) [![Latest Release](https://img.shields.io/github/release/cloudposse/terraform-aws-route53-cluster-hostname.svg)](https://github.com/cloudposse/terraform-aws-route53-cluster-hostname/releases/latest) [![Slack Community](https://slack.cloudposse.com/badge.svg)](https://slack.cloudposse.com)
+ [![Codefresh Build Status](https://g.codefresh.io/api/badges/pipeline/cloudposse/terraform-modules%2Fterraform-aws-route53-cluster-hostname?type=cf-1)](https://g.codefresh.io/public/accounts/cloudposse/pipelines/5d1194139b194bde0eaf284b) [![Latest Release](https://img.shields.io/github/release/cloudposse/terraform-aws-route53-cluster-hostname.svg)](https://github.com/cloudposse/terraform-aws-route53-cluster-hostname/releases/latest) [![Slack Community](https://slack.cloudposse.com/badge.svg)](https://slack.cloudposse.com)
 
 
 Terraform module to define a consistent AWS Route53 hostname
@@ -58,19 +58,16 @@ Available targets:
   lint                                Lint terraform code
 
 ```
-
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| enabled | Set to false to prevent the module from creating any resources | string | `true` | no |
-| name | The Name of the application or solution  (e.g. `bastion` or `portal`) | string | `dns` | no |
-| namespace | Namespace (e.g. `cp` or `cloudposse`) | string | - | yes |
-| records | Records | list | - | yes |
-| stage | Stage (e.g. `prod`, `dev`, `staging`) | string | - | yes |
+| enabled | Set to false to prevent the module from creating any resources | bool | `true` | no |
+| name | The Name of the application or solution  (e.g. `bastion` or `portal`) | string | - | yes |
+| records | DNS records to create | list(string) | - | yes |
 | ttl | The TTL of the record to add to the DNS zone to complete certificate validation | string | `300` | no |
-| type | Type | string | `CNAME` | no |
-| zone_id | Route53 DNS Zone id | string | `` | no |
+| type | Type of DNS records to create | string | `CNAME` | no |
+| zone_id | Route53 DNS Zone ID | string | - | yes |
 
 ## Outputs
 
@@ -160,7 +157,7 @@ In general, PRs are welcome. We follow the typical "fork-and-pull" Git workflow.
 
 ## Copyright
 
-Copyright © 2017-2018 [Cloud Posse, LLC](https://cpco.io/copyright)
+Copyright © 2017-2019 [Cloud Posse, LLC](https://cpco.io/copyright)
 
 
 
