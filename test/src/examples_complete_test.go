@@ -28,7 +28,7 @@ func TestExamplesComplete(t *testing.T) {
 	// Run `terraform output` to get the value of an output variable
 	hostname := terraform.Output(t, terraformOptions, "hostname")
 
-	expectedHostname := "test"
+	expectedHostname := "test-hostname.testing.cloudposse.co"
 	// Verify we're getting back the outputs we expect
 	assert.Equal(t, expectedHostname, hostname)
 }

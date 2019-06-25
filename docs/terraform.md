@@ -2,7 +2,7 @@
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| enabled | Set to false to prevent the module from creating any resources | string | `true` | no |
+| enabled | Set to false to prevent the module from creating any resources | bool | `true` | no |
 | name | The Name of the application or solution  (e.g. `bastion` or `portal`) | string | - | yes |
 | namespace | Namespace (e.g. `cp` or `cloudposse`) | string | `` | no |
 | records | DNS records to create | list(string) | - | yes |
