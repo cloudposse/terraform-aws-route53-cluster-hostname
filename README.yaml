@@ -32,9 +32,9 @@ github_repo: cloudposse/terraform-aws-route53-cluster-hostname
 
 # Badges to display
 badges:
-  - name: "Build Status"
-    image: "https://travis-ci.org/cloudposse/terraform-aws-route53-cluster-hostname.svg?branch=master"
-    url: "https://travis-ci.org/cloudposse/terraform-aws-route53-cluster-hostname"
+  - name: "Codefresh Build Status"
+    image: "https://g.codefresh.io/api/badges/pipeline/cloudposse/terraform-modules%2Fterraform-aws-route53-cluster-hostname?type=cf-1"
+    url: "https://g.codefresh.io/public/accounts/cloudposse/pipelines/5d1194139b194bde0eaf284b"
   - name: "Latest Release"
     image: "https://img.shields.io/github/release/cloudposse/terraform-aws-route53-cluster-hostname.svg"
     url: "https://github.com/cloudposse/terraform-aws-route53-cluster-hostname/releases/latest"
