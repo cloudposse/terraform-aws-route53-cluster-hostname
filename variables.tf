@@ -4,18 +4,6 @@ variable "enabled" {
   default     = true
 }
 
-variable "namespace" {
-  type        = string
-  description = "Namespace (e.g. `cp` or `cloudposse`)"
-  default     = ""
-}
-
-variable "stage" {
-  type        = string
-  description = "Stage (e.g. `prod`, `dev`, `staging`)"
-  default     = ""
-}
-
 variable "name" {
   type        = string
   description = "The Name of the application or solution  (e.g. `bastion` or `portal`)"

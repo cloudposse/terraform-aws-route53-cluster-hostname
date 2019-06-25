@@ -5,9 +5,7 @@ provider "aws" {
 module "hostname" {
   source = "../../"
 
-  namespace = var.namespace
-  stage     = var.stage
-  name      = var.name
-  zone_id   = var.zone_id
-  records   = var.records
+  name    = var.name
+  zone_id = var.zone_id
+  records = var.records
 }
