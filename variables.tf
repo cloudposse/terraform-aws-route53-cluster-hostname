@@ -30,3 +30,13 @@ variable "ttl" {
   default     = "300"
   description = "The TTL of the record to add to the DNS zone to complete certificate validation"
 }
+
+variable "namespace" {
+  type        = string
+  description = "Namespace (e.g. `eg` or `cp`)"
+}
+
+variable "stage" {
+  type        = string
+  description = "Stage (e.g. `prod`, `dev`, `staging`)"
+}
