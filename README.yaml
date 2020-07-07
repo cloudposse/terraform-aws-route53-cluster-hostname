@@ -1,4 +1,3 @@
----
 #
 # This is the canonical configuration for the `README.md`
 # Run `make readme` to rebuild the `README.md`
@@ -6,7 +5,6 @@
 
 # Name of this project
 name: terraform-aws-route53-cluster-hostname
-
 # Tags of this project
 tags:
   - aws
@@ -16,32 +14,24 @@ tags:
   - route53
   - cluster
   - hostname
-
 # Categories of this project
 categories:
   - terraform-modules/networking
-
 # Logo for this project
 #logo: docs/logo.png
 
 # License of this project
 license: "APACHE2"
-
 # Canonical GitHub repo
 github_repo: cloudposse/terraform-aws-route53-cluster-hostname
-
 # Badges to display
 badges:
-  - name: "Codefresh Build Status"
-    image: "https://g.codefresh.io/api/badges/pipeline/cloudposse/terraform-modules%2Fterraform-aws-route53-cluster-hostname?type=cf-1"
-    url: "https://g.codefresh.io/public/accounts/cloudposse/pipelines/5d1194139b194bde0eaf284b"
   - name: "Latest Release"
     image: "https://img.shields.io/github/release/cloudposse/terraform-aws-route53-cluster-hostname.svg"
     url: "https://github.com/cloudposse/terraform-aws-route53-cluster-hostname/releases/latest"
   - name: "Slack Community"
     image: "https://slack.cloudposse.com/badge.svg"
     url: "https://slack.cloudposse.com"
-
 related:
   - name: "terraform-aws-route53-alias"
     description: "Terraform module to define vanity host/domain (e.g. `brand.com`) as an ALIAS record"
@@ -52,15 +42,12 @@ related:
   - name: "terraform-aws-kops-route53"
     description: "Terraform module to lookup the IAM role associated with `kops` masters, and attach an IAM policy to the role with permissions to modify Route53 record sets"
     url: "https://github.com/cloudposse/terraform-aws-kops-route53"
-
 # Short description of this project
 description: |-
   Terraform module to define a consistent AWS Route53 hostname
-
 include:
   - "docs/targets.md"
   - "docs/terraform.md"
-
 # Contributors to this project
 contributors:
   - name: "Erik Osterman"
