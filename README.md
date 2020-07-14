@@ -44,7 +44,7 @@
 
 # terraform-aws-route53-cluster-hostname
 
- [![Codefresh Build Status](https://g.codefresh.io/api/badges/pipeline/cloudposse/terraform-modules%2Fterraform-aws-route53-cluster-hostname?type=cf-1)](https://g.codefresh.io/public/accounts/cloudposse/pipelines/5d1194139b194bde0eaf284b) [![Latest Release](https://img.shields.io/github/release/cloudposse/terraform-aws-route53-cluster-hostname.svg)](https://github.com/cloudposse/terraform-aws-route53-cluster-hostname/releases/latest) [![Slack Community](https://slack.cloudposse.com/badge.svg)](https://slack.cloudposse.com)
+ [![Latest Release](https://img.shields.io/github/release/cloudposse/terraform-aws-route53-cluster-hostname.svg)](https://github.com/cloudposse/terraform-aws-route53-cluster-hostname/releases/latest) [![Slack Community](https://slack.cloudposse.com/badge.svg)](https://slack.cloudposse.com)
 
 
 Terraform module to define a consistent AWS Route53 hostname
@@ -97,16 +97,30 @@ Available targets:
   lint                                Lint terraform code
 
 ```
+## Requirements
+
+| Name | Version |
+|------|---------|
+| terraform | ~> 0.12.0 |
+| aws | ~> 2.0 |
+| local | ~> 1.2 |
+
+## Providers
+
+| Name | Version |
+|------|---------|
+| aws | ~> 2.0 |
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|:----:|:-----:|:-----:|
-| enabled | Set to false to prevent the module from creating any resources | bool | `true` | no |
-| name | The Name of the application or solution  (e.g. `bastion` or `portal`) | string | - | yes |
-| records | DNS records to create | list(string) | - | yes |
-| ttl | The TTL of the record to add to the DNS zone to complete certificate validation | string | `300` | no |
-| type | Type of DNS records to create | string | `CNAME` | no |
-| zone_id | Route53 DNS Zone ID | string | - | yes |
+|------|-------------|------|---------|:--------:|
+| enabled | Set to false to prevent the module from creating any resources | `bool` | `true` | no |
+| name | The Name of the application or solution  (e.g. `bastion` or `portal`) | `string` | n/a | yes |
+| records | DNS records to create | `list(string)` | n/a | yes |
+| ttl | The TTL of the record to add to the DNS zone to complete certificate validation | `string` | `"300"` | no |
+| type | Type of DNS records to create | `string` | `"CNAME"` | no |
+| zone\_id | Route53 DNS Zone ID | `string` | n/a | yes |
 
 ## Outputs
 
@@ -167,6 +181,10 @@ We deliver 10x the value for a fraction of the cost of a full-time engineer. Our
 ## Slack Community
 
 Join our [Open Source Community][slack] on Slack. It's **FREE** for everyone! Our "SweetOps" community is where you get to talk with others who share a similar vision for how to rollout and manage infrastructure. This is the best place to talk shop, ask questions, solicit feedback, and work together as a community to build totally *sweet* infrastructure.
+
+## Discourse Forums
+
+Participate in our [Discourse Forums][discourse]. Here you'll find answers to commonly asked questions. Most questions will be related to the enormous number of projects we support on our GitHub. Come here to collaborate on answers, find solutions, and get ideas about the products and services we value. It only takes a minute to get started! Just sign in with SSO using your GitHub account.
 
 ## Newsletter
 
@@ -285,6 +303,7 @@ Check out [our other projects][github], [follow us on twitter][twitter], [apply 
   [testimonial]: https://cpco.io/leave-testimonial?utm_source=github&utm_medium=readme&utm_campaign=cloudposse/terraform-aws-route53-cluster-hostname&utm_content=testimonial
   [office_hours]: https://cloudposse.com/office-hours?utm_source=github&utm_medium=readme&utm_campaign=cloudposse/terraform-aws-route53-cluster-hostname&utm_content=office_hours
   [newsletter]: https://cpco.io/newsletter?utm_source=github&utm_medium=readme&utm_campaign=cloudposse/terraform-aws-route53-cluster-hostname&utm_content=newsletter
+  [discourse]: https://ask.sweetops.com/?utm_source=github&utm_medium=readme&utm_campaign=cloudposse/terraform-aws-route53-cluster-hostname&utm_content=discourse
   [email]: https://cpco.io/email?utm_source=github&utm_medium=readme&utm_campaign=cloudposse/terraform-aws-route53-cluster-hostname&utm_content=email
   [commercial_support]: https://cpco.io/commercial-support?utm_source=github&utm_medium=readme&utm_campaign=cloudposse/terraform-aws-route53-cluster-hostname&utm_content=commercial_support
   [we_love_open_source]: https://cpco.io/we-love-open-source?utm_source=github&utm_medium=readme&utm_campaign=cloudposse/terraform-aws-route53-cluster-hostname&utm_content=we_love_open_source
