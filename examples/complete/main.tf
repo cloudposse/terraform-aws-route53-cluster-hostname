@@ -5,7 +5,9 @@ provider "aws" {
 module "hostname" {
   source = "../../"
 
-  name    = var.name
   zone_id = var.zone_id
+  type    = var.type
   records = var.records
+
+  context = module.this.context
 }
