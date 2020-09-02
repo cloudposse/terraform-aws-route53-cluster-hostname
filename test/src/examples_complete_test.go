@@ -16,7 +16,7 @@ func TestExamplesComplete(t *testing.T) {
 		TerraformDir: "../../examples/complete",
 		Upgrade:      true,
 		// Variables to pass to our Terraform code using -var-file options
-		VarFiles: []string{"fixtures.us-west-1.tfvars"},
+		VarFiles: []string{"fixtures.us-east-2.tfvars"},
 	}
 
 	// At the end of the test, run `terraform destroy` to clean up any resources that were created
@@ -27,7 +27,6 @@ func TestExamplesComplete(t *testing.T) {
 
 	// Run `terraform output` to get the value of an output variable
 	hostname := terraform.Output(t, terraformOptions, "hostname")
-
 	expectedHostname := "test-hostname.testing.cloudposse.co"
 	// Verify we're getting back the outputs we expect
 	assert.Equal(t, expectedHostname, hostname)

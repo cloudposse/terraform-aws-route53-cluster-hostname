@@ -1,14 +1,3 @@
-variable "enabled" {
-  type        = bool
-  description = "Set to false to prevent the module from creating any resources"
-  default     = true
-}
-
-variable "name" {
-  type        = string
-  description = "The Name of the application or solution  (e.g. `bastion` or `portal`)"
-}
-
 variable "zone_id" {
   type        = string
   description = "Route53 DNS Zone ID"
@@ -26,7 +15,7 @@ variable "type" {
 }
 
 variable "ttl" {
-  type        = string
-  default     = "300"
+  type        = number
+  default     = 300
   description = "The TTL of the record to add to the DNS zone to complete certificate validation"
 }
