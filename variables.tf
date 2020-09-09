@@ -19,3 +19,9 @@ variable "ttl" {
   default     = 300
   description = "The TTL of the record to add to the DNS zone to complete certificate validation"
 }
+
+variable "dns_name" {
+  type        = string
+  description = "The name of the DNS record"
+  default     = ""
+}
