@@ -1,4 +1,4 @@
-     
+
 <!-- markdownlint-disable -->
 # terraform-aws-route53-cluster-hostname
 
