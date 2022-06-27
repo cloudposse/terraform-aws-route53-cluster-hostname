@@ -81,6 +81,51 @@ Security scanning is graciously provided by Bridgecrew. Bridgecrew is the leadin
 
 
 
+## Usage
+
+
+**IMPORTANT:** We do not pin modules to versions in our examples because of the
+difficulty of keeping the versions in the documentation in sync with the latest released versions.
+We highly recommend that in your code you pin the version to the exact version you are
+using so that your infrastructure remains stable, and update versions in a
+systematic way so that they do not catch you by surprise.
+
+Also, because of a bug in the Terraform registry ([hashicorp/terraform#21417](https://github.com/hashicorp/terraform/issues/21417)),
+the registry shows many of our inputs as required when in fact they are optional.
+The table below correctly indicates which inputs are required.
+
+
+For a complete example, see [examples/complete](examples/complete).
+
+For automated tests of the complete example using [bats](https://github.com/bats-core/bats-core) and [Terratest](https://github.com/gruntwork-io/terratest)
+(which tests and deploys the example on AWS), see [test](test).
+
+```hcl
+# Create a standard label resource. See [null-label](https://github.com/cloudposse/terraform-null-label/#terraform-null-label--)
+module "label" {
+  source  = "cloudposse/label/null"
+  # Cloud Posse recommends pinning every module to a specific version, though usually you want to use the current one
+  # version = "x.x.x"
+
+  namespace = "eg"
+  name      = "example"
+}
+
+module "route53_hostname" {
+  source  = "cloudposse/route53-cluster-hostname/aws"
+  # Cloud Posse recommends pinning every module to a specific version
+  # version = "x.x.x"
+
+  zone_id = "Z3SO0TKDDQ0RGG"
+  type    = "CNAME"
+
+  records = [
+    "test-hostname",
+  ]
+
+  context = module.label.context
+}
+```
 
 
 
@@ -124,6 +169,7 @@ Available targets:
 | Name | Type |
 |------|------|
 | [aws_route53_record.default](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_record) | resource |
+| [aws_route53_zone.default](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/route53_zone) | data source |
 
 ## Inputs
 
@@ -144,6 +190,7 @@ Available targets:
 | <a name="input_labels_as_tags"></a> [labels\_as\_tags](#input\_labels\_as\_tags) | Set of labels (ID elements) to include as tags in the `tags` output.<br>Default is to include all labels.<br>Tags with empty values will not be included in the `tags` output.<br>Set to `[]` to suppress all generated tags.<br>**Notes:**<br>  The value of the `name` tag, if included, will be the `id`, not the `name`.<br>  Unlike other `null-label` inputs, the initial setting of `labels_as_tags` cannot be<br>  changed in later chained modules. Attempts to change it will be silently ignored. | `set(string)` | <pre>[<br>  "default"<br>]</pre> | no |
 | <a name="input_name"></a> [name](#input\_name) | ID element. Usually the component or solution name, e.g. 'app' or 'jenkins'.<br>This is the only ID element not also included as a `tag`.<br>The "name" tag is set to the full `id` string. There is no tag with the value of the `name` input. | `string` | `null` | no |
 | <a name="input_namespace"></a> [namespace](#input\_namespace) | ID element. Usually an abbreviation of your organization name, e.g. 'eg' or 'cp', to help ensure generated IDs are globally unique | `string` | `null` | no |
+| <a name="input_private_zone"></a> [private\_zone](#input\_private\_zone) | Used with `zone_name` input to get a private Hosted Zone. | `bool` | `null` | no |
 | <a name="input_records"></a> [records](#input\_records) | DNS records to create | `list(string)` | n/a | yes |
 | <a name="input_regex_replace_chars"></a> [regex\_replace\_chars](#input\_regex\_replace\_chars) | Terraform regular expression (regex) string.<br>Characters matching the regex will be removed from the ID elements.<br>If not set, `"/[^a-zA-Z0-9-]/"` is used to remove all characters other than hyphens, letters and digits. | `string` | `null` | no |
 | <a name="input_stage"></a> [stage](#input\_stage) | ID element. Usually used to indicate role, e.g. 'prod', 'staging', 'source', 'build', 'test', 'deploy', 'release' | `string` | `null` | no |
@@ -151,7 +198,10 @@ Available targets:
 | <a name="input_tenant"></a> [tenant](#input\_tenant) | ID element \_(Rarely used, not included by default)\_. A customer identifier, indicating who this instance of a resource is for | `string` | `null` | no |
 | <a name="input_ttl"></a> [ttl](#input\_ttl) | The TTL of the record to add to the DNS zone to complete certificate validation | `number` | `300` | no |
 | <a name="input_type"></a> [type](#input\_type) | Type of DNS records to create | `string` | `"CNAME"` | no |
-| <a name="input_zone_id"></a> [zone\_id](#input\_zone\_id) | Route53 DNS Zone ID | `string` | n/a | yes |
+| <a name="input_zone_id"></a> [zone\_id](#input\_zone\_id) | Route53 DNS Zone ID | `string` | `null` | no |
+| <a name="input_zone_name"></a> [zone\_name](#input\_zone\_name) | The Hosted Zone name of the desired Hosted Zone. | `string` | `null` | no |
+| <a name="input_zone_tags"></a> [zone\_tags](#input\_zone\_tags) | Used with `zone_name` input. A map of tags, each pair of which must exactly match a pair on the desired Hosted Zone. | `map(string)` | `null` | no |
+| <a name="input_zone_vpc_id"></a> [zone\_vpc\_id](#input\_zone\_vpc\_id) | Used with `zone_name` input to get a private Hosted Zone associated with the `vpc_id` (in this case, private\_zone is not mandatory). | `string` | `null` | no |
 
 ## Outputs
 
@@ -307,8 +357,8 @@ Check out [our other projects][github], [follow us on twitter][twitter], [apply 
 ### Contributors
 
 <!-- markdownlint-disable -->
-|  [![Erik Osterman][osterman_avatar]][osterman_homepage]<br/>[Erik Osterman][osterman_homepage] | [![Igor Rodionov][goruha_avatar]][goruha_homepage]<br/>[Igor Rodionov][goruha_homepage] | [![Andriy Knysh][aknysh_avatar]][aknysh_homepage]<br/>[Andriy Knysh][aknysh_homepage] | [![Lucas Pearson][pearson-lucas-dev_avatar]][pearson-lucas-dev_homepage]<br/>[Lucas Pearson][pearson-lucas-dev_homepage] | [![Daren Desjardins][darend_avatar]][darend_homepage]<br/>[Daren Desjardins][darend_homepage] |
-|---|---|---|---|---|
+|  [![Erik Osterman][osterman_avatar]][osterman_homepage]<br/>[Erik Osterman][osterman_homepage] | [![Igor Rodionov][goruha_avatar]][goruha_homepage]<br/>[Igor Rodionov][goruha_homepage] | [![Andriy Knysh][aknysh_avatar]][aknysh_homepage]<br/>[Andriy Knysh][aknysh_homepage] | [![Lucas Pearson][pearson-lucas-dev_avatar]][pearson-lucas-dev_homepage]<br/>[Lucas Pearson][pearson-lucas-dev_homepage] | [![Daren Desjardins][darend_avatar]][darend_homepage]<br/>[Daren Desjardins][darend_homepage] | [![RB][nitrocode_avatar]][nitrocode_homepage]<br/>[RB][nitrocode_homepage] |
+|---|---|---|---|---|---|
 <!-- markdownlint-restore -->
 
   [osterman_homepage]: https://github.com/osterman
@@ -321,6 +371,8 @@ Check out [our other projects][github], [follow us on twitter][twitter], [apply 
   [pearson-lucas-dev_avatar]: https://img.cloudposse.com/150x150/https://github.com/pearson-lucas-dev.png
   [darend_homepage]: https://github.com/darend
   [darend_avatar]: https://img.cloudposse.com/150x150/https://github.com/darend.png
+  [nitrocode_homepage]: https://github.com/nitrocode
+  [nitrocode_avatar]: https://img.cloudposse.com/150x150/https://github.com/nitrocode.png
 
 [![README Footer][readme_footer_img]][readme_footer_link]
 [![Beacon][beacon]][website]
