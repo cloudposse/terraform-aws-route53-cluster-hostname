@@ -1,6 +1,31 @@
 variable "zone_id" {
   type        = string
   description = "Route53 DNS Zone ID"
+  default     = null
+}
+
+variable "zone_name" {
+  type        = string
+  description = "The Hosted Zone name of the desired Hosted Zone."
+  default     = null
+}
+
+variable "private_zone" {
+  type        = bool
+  description = "Used with `zone_name` input to get a private Hosted Zone."
+  default     = null
+}
+
+variable "zone_vpc_id" {
+  type        = string
+  description = "Used with `zone_name` input to get a private Hosted Zone associated with the `vpc_id` (in this case, private_zone is not mandatory)."
+  default     = null
+}
+
+variable "zone_tags" {
+  type        = map(string)
+  description = "Used with `zone_name` input. A map of tags, each pair of which must exactly match a pair on the desired Hosted Zone."
+  default     = null
 }
 
 variable "records" {

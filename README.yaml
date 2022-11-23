@@ -5,6 +5,7 @@
 
 # Name of this project
 name: terraform-aws-route53-cluster-hostname
+
 # Tags of this project
 tags:
   - aws
@@ -14,6 +15,7 @@ tags:
   - route53
   - cluster
   - hostname
+
 # Categories of this project
 categories:
   - terraform-modules/networking
@@ -22,8 +24,10 @@ categories:
 
 # License of this project
 license: "APACHE2"
+
 # Canonical GitHub repo
 github_repo: cloudposse/terraform-aws-route53-cluster-hostname
+
 # Badges to display
 badges:
   - name: "Latest Release"
@@ -32,6 +36,7 @@ badges:
   - name: "Slack Community"
     image: "https://slack.cloudposse.com/badge.svg"
     url: "https://slack.cloudposse.com"
+
 related:
   - name: "terraform-aws-route53-alias"
     description: "Terraform module to define vanity host/domain (e.g. `brand.com`) as an ALIAS record"
@@ -42,12 +47,48 @@ related:
   - name: "terraform-aws-kops-route53"
     description: "Terraform module to lookup the IAM role associated with `kops` masters, and attach an IAM policy to the role with permissions to modify Route53 record sets"
     url: "https://github.com/cloudposse/terraform-aws-kops-route53"
+
 # Short description of this project
 description: |-
   Terraform module to define a consistent AWS Route53 hostname
+
+usage: |-
+  For a complete example, see [examples/complete](examples/complete).
+
+  For automated tests of the complete example using [bats](https://github.com/bats-core/bats-core) and [Terratest](https://github.com/gruntwork-io/terratest)
+  (which tests and deploys the example on AWS), see [test](test).
+
+  ```hcl
+  # Create a standard label resource. See [null-label](https://github.com/cloudposse/terraform-null-label/#terraform-null-label--)
+  module "label" {
+    source  = "cloudposse/label/null"
+    # Cloud Posse recommends pinning every module to a specific version, though usually you want to use the current one
+    # version = "x.x.x"
+
+    namespace = "eg"
+    name      = "example"
+  }
+
+  module "route53_hostname" {
+    source  = "cloudposse/route53-cluster-hostname/aws"
+    # Cloud Posse recommends pinning every module to a specific version
+    # version = "x.x.x"
+
+    zone_id = "Z3SO0TKDDQ0RGG"
+    type    = "CNAME"
+
+    records = [
+      "test-hostname",
+    ]
+
+    context = module.label.context
+  }
+  ```
+
 include:
   - "docs/targets.md"
   - "docs/terraform.md"
+
 # Contributors to this project
 contributors:
   - name: "Erik Osterman"
@@ -60,3 +101,5 @@ contributors:
     github: "pearson-lucas-dev"
   - name: "Daren Desjardins"
     github: "darend"
+  - name: "RB"
+    github: "nitrocode"
