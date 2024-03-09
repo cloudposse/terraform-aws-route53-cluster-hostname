@@ -30,13 +30,17 @@ github_repo: cloudposse/terraform-aws-route53-cluster-hostname
 
 # Badges to display
 badges:
-  - name: "Latest Release"
-    image: "https://img.shields.io/github/release/cloudposse/terraform-aws-route53-cluster-hostname.svg"
-    url: "https://github.com/cloudposse/terraform-aws-route53-cluster-hostname/releases/latest"
-  - name: "Slack Community"
-    image: "https://slack.cloudposse.com/badge.svg"
-    url: "https://slack.cloudposse.com"
+  - name: Latest Release
+    image: https://img.shields.io/github/release/cloudposse/terraform-aws-route53-cluster-hostname.svg?style=for-the-badge
+    url: https://github.com/cloudposse/terraform-aws-route53-cluster-hostname/releases/latest
+  - name: Last Updated
+    image: https://img.shields.io/github/last-commit/cloudposse/terraform-aws-route53-cluster-hostname.svg?style=for-the-badge
+    url: https://github.com/cloudposse/terraform-aws-route53-cluster-hostname/commits
+  - name: Slack Community
+    image: https://slack.cloudposse.com/for-the-badge.svg
+    url: https://slack.cloudposse.com
 
+# List any related terraform modules that this module may be used with or that this module depends on.
 related:
   - name: "terraform-aws-route53-alias"
     description: "Terraform module to define vanity host/domain (e.g. `brand.com`) as an ALIAS record"
@@ -90,16 +94,4 @@ include:
   - "docs/terraform.md"
 
 # Contributors to this project
-contributors:
-  - name: "Erik Osterman"
-    github: "osterman"
-  - name: "Igor Rodionov"
-    github: "goruha"
-  - name: "Andriy Knysh"
-    github: "aknysh"
-  - name: "Lucas Pearson"
-    github: "pearson-lucas-dev"
-  - name: "Daren Desjardins"
-    github: "darend"
-  - name: "RB"
-    github: "nitrocode"
+contributors: []
