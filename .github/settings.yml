@@ -1,0 +1,5 @@
+# Upstream changes from _extends are only recognized when modifications are made to this file in the default branch.
+_extends: .github
+repository:
+  name: terraform-aws-route53-cluster-hostname
+  description: Terraform module to define a consistent AWS Route53 hostname
