@@ -3,3 +3,5 @@ _extends: .github
 repository:
   name: terraform-aws-route53-cluster-hostname
   description: Terraform module to define a consistent AWS Route53 hostname
+  homepage: https://cloudposse.com/accelerate
+  topics: terraform, terraform-modules, route53, hcl2
