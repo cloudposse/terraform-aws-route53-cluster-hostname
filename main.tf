@@ -30,7 +30,7 @@ resource "aws_route53_health_check" "default" {
   port       = var.healthcheck_settings.port
   regions    = var.healthcheck_settings.regions
 
-  resource_name   = var.healthcheck_settings.resource_name
+  reference_name  = var.healthcheck_settings.reference_name
   resource_path   = var.healthcheck_settings.resource_path
   search_string   = var.healthcheck_settings.search_string
   measure_latency = var.healthcheck_settings.measure_latency
