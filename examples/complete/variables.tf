@@ -1,13 +1,16 @@
 variable "region" {
-  type = string
+  type        = string
+  description = "AWS region"
 }
 
 variable "zone_id" {
-  type = string
+  type        = string
+  description = "Route53 DNS Zone ID"
 }
 
 variable "records" {
-  type = list(string)
+  description = "DNS records to create"
+  type        = list(string)
 }
 
 variable "type" {
