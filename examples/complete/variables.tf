@@ -21,3 +21,10 @@ variable "ttl" {
   default     = 300
   description = "The TTL of the record to add to the DNS zone to complete certificate validation"
 }
+
+variable "healthcheck_enabled" {
+  type        = bool
+  description = "Whether to create a Route53 health check"
+  default     = false
+}
+
