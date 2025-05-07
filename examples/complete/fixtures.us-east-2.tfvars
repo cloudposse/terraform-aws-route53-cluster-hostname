@@ -6,6 +6,6 @@ name = "test-hostname"
 
 type = "CNAME"
 
-zone_id = "Z3SO0TKDDQ0RGG"
+zone_id = "Z0880904EUMUUAAGCA17"
 
 records = ["test-hostname"]
