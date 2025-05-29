@@ -3,7 +3,7 @@
 <!-- markdownlint-disable -->
 <a href="https://cpco.io/homepage"><img src="https://github.com/cloudposse/terraform-aws-route53-cluster-hostname/blob/main/.github/banner.png?raw=true" alt="Project Banner"/></a><br/>
     <p align="right">
-<a href="https://github.com/cloudposse/terraform-aws-route53-cluster-hostname/releases/latest"><img src="https://img.shields.io/github/release/cloudposse/terraform-aws-route53-cluster-hostname.svg?style=for-the-badge" alt="Latest Release"/></a><a href="https://github.com/cloudposse/terraform-aws-route53-cluster-hostname/commits"><img src="https://img.shields.io/github/last-commit/cloudposse/terraform-aws-route53-cluster-hostname.svg?style=for-the-badge" alt="Last Updated"/></a><a href="https://slack.cloudposse.com"><img src="https://slack.cloudposse.com/for-the-badge.svg" alt="Slack Community"/></a></p>
+<a href="https://github.com/cloudposse/terraform-aws-route53-cluster-hostname/releases/latest"><img src="https://img.shields.io/github/release/cloudposse/terraform-aws-route53-cluster-hostname.svg?style=for-the-badge" alt="Latest Release"/></a><a href="https://github.com/cloudposse/terraform-aws-route53-cluster-hostname/commits"><img src="https://img.shields.io/github/last-commit/cloudposse/terraform-aws-route53-cluster-hostname.svg?style=for-the-badge" alt="Last Updated"/></a><a href="https://cloudposse.com/slack"><img src="https://slack.cloudposse.com/for-the-badge.svg" alt="Slack Community"/></a></p>
 <!-- markdownlint-restore -->
 
 <!--
@@ -37,7 +37,7 @@ Terraform module to define a consistent AWS Route53 hostname
 >
 > <details>
 > <summary><strong>Watch demo of using Atmos with Terraform</strong></summary>
-> <img src="https://github.com/cloudposse/atmos/blob/master/docs/demo.gif?raw=true"/><br/>
+> <img src="https://github.com/cloudposse/atmos/blob/main/docs/demo.gif?raw=true"/><br/>
 > <i>Example of running <a href="https://atmos.tools"><code>atmos</code></a> to manage infrastructure from our <a href="https://atmos.tools/quick-start/">Quick Start</a> tutorial.</i>
 > </detalis>
 
@@ -93,23 +93,11 @@ module "route53_hostname" {
 
 
 <!-- markdownlint-disable -->
-## Makefile Targets
-```text
-Available targets:
-
-  help                                Help screen
-  help/all                            Display help for all targets
-  help/short                          This help short screen
-  lint                                Lint terraform code
-
-```
-<!-- markdownlint-restore -->
-<!-- markdownlint-disable -->
 ## Requirements
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.13.0 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.3.9 |
 | <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 3.0 |
 
 ## Providers
@@ -128,6 +116,7 @@ Available targets:
 
 | Name | Type |
 |------|------|
+| [aws_route53_health_check.default](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_health_check) | resource |
 | [aws_route53_record.default](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_record) | resource |
 | [aws_route53_zone.default](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/route53_zone) | data source |
 
@@ -143,6 +132,8 @@ Available targets:
 | <a name="input_dns_name"></a> [dns\_name](#input\_dns\_name) | The name of the DNS record | `string` | `""` | no |
 | <a name="input_enabled"></a> [enabled](#input\_enabled) | Set to false to prevent the module from creating any resources | `bool` | `null` | no |
 | <a name="input_environment"></a> [environment](#input\_environment) | ID element. Usually used for region e.g. 'uw2', 'us-west-2', OR role 'prod', 'staging', 'dev', 'UAT' | `string` | `null` | no |
+| <a name="input_healthcheck_enabled"></a> [healthcheck\_enabled](#input\_healthcheck\_enabled) | Whether to create a Route53 health check | `bool` | `false` | no |
+| <a name="input_healthcheck_settings"></a> [healthcheck\_settings](#input\_healthcheck\_settings) | Route 53 health check configuration settings<br/><br/>  domain: The fully qualified domain name of the endpoint to be checked<br/>  ip\_address: The IP address of the endpoint to be checked<br/>  regions: AWS regions to run the health checks from<br/>  type: The protocol to use for the health check such as HTTP HTTPS TCP etc<br/>  port: Port on the endpoint to be checked<br/>  reference\_name: Used in caller reference and helpful for identifying individual health check sets<br/>  resource\_path: The URL path Route 53 requests during the health check<br/>  failure\_threshold: Number of consecutive health checks that an endpoint must pass or fail<br/>  search\_string: String searched in response body for match checks<br/>  measure\_latency: Whether to measure and report latency from multiple regions<br/>  invert\_healthcheck: If true a healthy check is considered unhealthy and vice versa<br/>  child\_healthchecks: List of health check IDs for associated child checks<br/>  routing\_control\_arn: ARN of the Application Recovery Controller routing control<br/>  request\_interval: Interval between health check requests in seconds<br/>  child\_health\_threshold: Minimum number of child checks that must be healthy<br/>  cloudwatch\_alarm\_name: Name of the CloudWatch alarm to evaluate<br/>  cloudwatch\_alarm\_region: Region where the CloudWatch alarm is configured<br/>  insufficient\_data\_health\_status: Status to assign when CloudWatch has insufficient data | <pre>object({<br/>    domain                          = optional(string)<br/>    ip_address                      = optional(string)<br/>    regions                         = optional(list(string))<br/>    type                            = optional(string, "HTTPS")<br/>    request_interval                = optional(string, "30")<br/>    port                            = optional(number, 443)<br/>    reference_name                  = optional(string)<br/>    resource_path                   = optional(string)<br/>    failure_threshold               = optional(number)<br/>    search_string                   = optional(string)<br/>    measure_latency                 = optional(bool)<br/>    invert_healthcheck              = optional(bool)<br/>    child_healthchecks              = optional(list(string))<br/>    routing_control_arn             = optional(string)<br/>    child_health_threshold          = optional(number)<br/>    cloudwatch_alarm_name           = optional(string)<br/>    cloudwatch_alarm_region         = optional(string)<br/>    insufficient_data_health_status = optional(string)<br/>  })</pre> | `{}` | no |
 | <a name="input_id_length_limit"></a> [id\_length\_limit](#input\_id\_length\_limit) | Limit `id` to this many characters (minimum 6).<br/>Set to `0` for unlimited length.<br/>Set to `null` for keep the existing setting, which defaults to `0`.<br/>Does not affect `id_full`. | `number` | `null` | no |
 | <a name="input_label_key_case"></a> [label\_key\_case](#input\_label\_key\_case) | Controls the letter case of the `tags` keys (label names) for tags generated by this module.<br/>Does not affect keys of tags passed in via the `tags` input.<br/>Possible values: `lower`, `title`, `upper`.<br/>Default value: `title`. | `string` | `null` | no |
 | <a name="input_label_order"></a> [label\_order](#input\_label\_order) | The order in which the labels (ID elements) appear in the `id`.<br/>Defaults to ["namespace", "environment", "stage", "name", "attributes"].<br/>You can omit any of the 6 labels ("tenant" is the 6th), but at least one must be present. | `list(string)` | `null` | no |
@@ -169,6 +160,11 @@ Available targets:
 |------|-------------|
 | <a name="output_hostname"></a> [hostname](#output\_hostname) | DNS hostname |
 <!-- markdownlint-restore -->
+
+
+
+
+
 
 
 ## Related Projects
@@ -294,7 +290,7 @@ All other trademarks referenced herein are the property of their respective owne
 
 
 ---
-Copyright © 2017-2024 [Cloud Posse, LLC](https://cpco.io/copyright)
+Copyright © 2017-2025 [Cloud Posse, LLC](https://cpco.io/copyright)
 
 
 <a href="https://cloudposse.com/readme/footer/link?utm_source=github&utm_medium=readme&utm_campaign=cloudposse/terraform-aws-route53-cluster-hostname&utm_content=readme_footer_link"><img alt="README footer" src="https://cloudposse.com/readme/footer/img"/></a>
